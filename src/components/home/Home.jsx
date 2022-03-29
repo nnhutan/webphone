@@ -3,6 +3,7 @@ import { useState } from "react";
 import NumberItem from "../number-item/NumberItem";
 import { FiPhone } from "react-icons/fi";
 import { TiBackspaceOutline, TiBackspace } from "react-icons/ti";
+import useFormatPhoneNumber from "./../../hooks/useFormatPhoneNumber";
 
 const keyboard = [
   { num: 1, text: "" },
@@ -19,23 +20,9 @@ const keyboard = [
   { num: "#", text: "" },
 ];
 
-function formatPhoneNumber(value) {
-  if (value.includes("*") || value.includes("#")) return value;
-  if (!value) return value;
-  const phoneNumber = value.replace(/[^\d]/g, "");
-  const phoneNumberLength = phoneNumber.length;
-  if (phoneNumberLength < 4) return phoneNumber;
-  if (phoneNumberLength < 7) {
-    return `${phoneNumber.slice(0, 3)} ${phoneNumber.slice(3)}`;
-  }
-  return `${phoneNumber.slice(0, 3)} ${phoneNumber.slice(
-    3,
-    6
-  )} ${phoneNumber.slice(6, 10)}`;
-}
-
 const Home = ({ phoneNumber, setPhoneNumber }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const formatPhoneNumber = useFormatPhoneNumber();
 
   return (
     <div className="mobile-container">

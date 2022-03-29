@@ -2,6 +2,7 @@ import "./App.scss";
 import JsSIP from "jssip";
 import { useState } from "react";
 import Home from "./components/home/Home";
+import CallScreen from "./components/call-screen/CallScreen";
 
 var socket = new JsSIP.WebSocketInterface("wss://sbc03.tel4vn.com:7444");
 var configuration = {
@@ -40,11 +41,12 @@ var options = {
 // var session = ua.call("sip:bob@example.com", options);
 
 function App() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("0123456789");
 
   return (
     <div className="App">
-      <Home phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+      {/* <Home phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} /> */}
+      <CallScreen phoneNumber={phoneNumber} />
     </div>
   );
 }

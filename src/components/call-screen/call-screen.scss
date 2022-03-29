@@ -1,0 +1,93 @@
+.call-container {
+  width: 300px;
+  height: 542px;
+  background-color: #fbfbff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 30px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .call-top {
+    .avatar {
+      border-radius: 50%;
+      background-color: #ddd;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+
+      .person-icon {
+        font-size: 48px;
+        color: #888;
+      }
+    }
+
+    .phone-number {
+      font-size: 22px;
+      color: #555;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin: 8px 0 2px;
+    }
+
+    .status {
+      color: #999;
+      letter-spacing: 1px;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .call-bottom {
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      .actions-item {
+        margin: 0 20px;
+        cursor: pointer;
+        transition: all ease-in-out 0.3s;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .actions-icon {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .cancel {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background-color: #ff5353;
+      color: #fbfbff;
+      font-size: 32px;
+      justify-self: flex-end;
+      margin: auto;
+      display: block;
+      cursor: pointer;
+      box-shadow: 0 0 6px 8px rgba($color: #000000, $alpha: 0.05);
+      transition: all ease-in-out 0.2s;
+
+      &:hover {
+        transform: scale3d(1.05, 1.05, 1);
+      }
+    }
+  }
+}
