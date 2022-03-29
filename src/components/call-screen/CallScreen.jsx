@@ -4,8 +4,12 @@ import { GiSpeaker } from "react-icons/gi";
 import { IoIosKeypad } from "react-icons/io";
 import { ImPhoneHangUp } from "react-icons/im";
 import useFormatPhoneNumber from "./../../hooks/useFormatPhoneNumber";
+import { useEffect } from "react";
 
-const CallScreen = ({ phoneNumber }) => {
+const CallScreen = ({ phoneNumber, ua, session }) => {
+  useEffect(() => {
+    console.log(ua);
+  }, []);
   const formatPhoneNumber = useFormatPhoneNumber();
   return (
     <div className="call-container">
@@ -21,14 +25,25 @@ const CallScreen = ({ phoneNumber }) => {
           <span className="actions-item">
             <GiSpeaker className="actions-icon" />
           </span>
-          <span className="actions-item">
+          <span
+            className="actions-item"
+            onClick={() => {
+              console.log(session);
+              session.mute();
+            }}
+          >
             <BsMicMute className="actions-icon" />
           </span>
           <span className="actions-item">
             <IoIosKeypad className="actions-icon" />
           </span>
         </div>
-        <button className="cancel">
+        <button
+          className="cancel"
+          onClick={() => {
+            ua.terminateSessions();
+          }}
+        >
           <ImPhoneHangUp className="cancle-icon" />
         </button>
       </div>

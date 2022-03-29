@@ -80,10 +80,12 @@
       font-size: 32px;
       justify-self: flex-end;
       margin: auto;
-      display: block;
       cursor: pointer;
       box-shadow: 0 0 6px 8px rgba($color: #000000, $alpha: 0.05);
       transition: all ease-in-out 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         transform: scale3d(1.05, 1.05, 1);

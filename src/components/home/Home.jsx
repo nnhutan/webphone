@@ -20,9 +20,13 @@ const keyboard = [
   { num: "#", text: "" },
 ];
 
-const Home = ({ phoneNumber, setPhoneNumber }) => {
+const Home = ({ phoneNumber, setPhoneNumber, ua, options }) => {
   const [isHovered, setIsHovered] = useState(false);
   const formatPhoneNumber = useFormatPhoneNumber();
+
+  const handleCall = () => {
+    phoneNumber && ua.call(phoneNumber.replace(" ", ""), options);
+  };
 
   return (
     <div className="mobile-container">
@@ -64,7 +68,7 @@ const Home = ({ phoneNumber, setPhoneNumber }) => {
         ))}
       </div>
 
-      <button className="call-btn">
+      <button className="call-btn" onClick={handleCall}>
         <FiPhone className="call-icon" />
       </button>
     </div>
