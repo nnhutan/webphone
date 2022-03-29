@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import JsSIP from "jssip";
+import { useState } from "react";
+import Home from "./components/home/Home";
+
+var socket = new JsSIP.WebSocketInterface("wss://sbc03.tel4vn.com:7444");
+var configuration = {
+  sockets: [socket],
+  session_timers: false,
+  uri: "105@2-test1.gcalls.vn:50061",
+  password: "test1105",
+};
+
+var ua = new JsSIP.UA(configuration);
+
+ua.start();
+
+// Register callbacks to desired call events
+var eventHandlers = {
+  progress: function (e) {
+    console.log("call is in progress");
+  },
+  failed: function (e) {
+    console.log(e);
+    console.log("call failed with cause: ");
+  },
+  ended: function (e) {
+    console.log("call ended with cause: ");
+  },
+  confirmed: function (e) {
+    console.log("call confirmed");
+  },
+};
+
+var options = {
+  eventHandlers: eventHandlers,
+  mediaConstraints: { audio: true, video: true },
+};
+
+// var session = ua.call("sip:bob@example.com", options);
 
 function App() {
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
     </div>
   );
 }

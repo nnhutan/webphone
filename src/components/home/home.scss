@@ -1,0 +1,80 @@
+.mobile-container {
+  width: 300px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #fbfbff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 20px;
+
+  .input-wrapper {
+    display: flex;
+    .phone-number-input {
+      border: none;
+      outline: none;
+      height: 40px;
+      font-size: 32px;
+      width: 100%;
+      background-color: #fbfbff;
+      margin-bottom: 20px;
+      margin-top: 40px;
+
+      &::placeholder {
+        font-size: 24px;
+      }
+    }
+
+    .delete-btn {
+      cursor: pointer;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+
+      .delete-icon {
+        font-size: 28px;
+        color: darkred;
+      }
+    }
+  }
+
+  .number-keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+
+    .item {
+      width: 30%;
+      margin-bottom: 16px;
+    }
+  }
+
+  .call-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    background-color: #5fdd5a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 6px 8px rgba($color: #000000, $alpha: 0.05);
+    transition: all ease-in-out 0.2s;
+
+    &:hover {
+      transform: scale3d(1.1, 1.1, 1);
+    }
+
+    .call-icon {
+      color: white;
+      font-size: 26px;
+    }
+  }
+}
