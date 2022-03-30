@@ -1,0 +1,12 @@
+.number-keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+
+  .item {
+    width: 30%;
+    margin-bottom: 16px;
+  }
+}

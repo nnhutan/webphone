@@ -1,12 +1,32 @@
 import "./call-screen.scss";
 import { BsPersonFill, BsMicMute } from "react-icons/bs";
-import { GiSpeaker } from "react-icons/gi";
 import { IoIosKeypad } from "react-icons/io";
+import {
+  IoCloseCircleOutline,
+  IoCloseCircle,
+  IoVolumeMuteSharp,
+} from "react-icons/io5";
 import { ImPhoneHangUp } from "react-icons/im";
 import useFormatPhoneNumber from "./../../hooks/useFormatPhoneNumber";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import KeyPad from "./../key-pad/KeyPad";
 
-const CallScreen = ({ phoneNumber, ua, session }) => {
+const CallScreen = ({
+  phoneNumber,
+  ua,
+  session,
+  speakerOff,
+  setSpeakerOff,
+  seconds,
+  minutes,
+  isRunning,
+}) => {
+  const [currNum, setCurrNum] = useState("");
+  const [isHovered, setIsHovered] = useState(false);
+  const [showKeyPad, setShowKeyPad] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [] = useState(false);
+
   useEffect(() => {
     console.log(ua);
   }, []);
@@ -18,26 +38,60 @@ const CallScreen = ({ phoneNumber, ua, session }) => {
           <BsPersonFill className="person-icon" />
         </div>
         <div className="phone-number">{formatPhoneNumber(phoneNumber)}</div>
-        <span className="status">Calling...</span>
+        {!isRunning ? (
+          <span className="status">Calling...</span>
+        ) : (
+          <span className="status">{minutes + " : " + seconds}</span>
+        )}
       </div>
       <div className="call-bottom">
-        <div className="actions">
-          <span className="actions-item">
-            <GiSpeaker className="actions-icon" />
-          </span>
-          <span
-            className="actions-item"
-            onClick={() => {
-              console.log(session);
-              session.mute();
-            }}
-          >
-            <BsMicMute className="actions-icon" />
-          </span>
-          <span className="actions-item">
-            <IoIosKeypad className="actions-icon" />
-          </span>
-        </div>
+        {!showKeyPad ? (
+          <div className="actions">
+            <span
+              className={speakerOff ? "actions-item active" : "actions-item"}
+              onClick={() => {
+                setSpeakerOff(!speakerOff);
+              }}
+            >
+              <IoVolumeMuteSharp className="actions-icon" />
+            </span>
+            <span
+              className={muted ? "actions-item active" : "actions-item"}
+              onClick={() => {
+                muted ? session.unmute() : session.mute();
+                setMuted(!muted);
+              }}
+            >
+              <BsMicMute className="actions-icon" />
+            </span>
+            <span
+              className="actions-item"
+              onClick={() => {
+                setShowKeyPad(true);
+              }}
+            >
+              <IoIosKeypad className="actions-icon" />
+            </span>
+          </div>
+        ) : (
+          <div className="keypad">
+            <div className="phone-number">{currNum}</div>
+            <KeyPad setPhoneNumber={setCurrNum} />
+            <div
+              className="close-icon"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => {
+                setIsHovered(false);
+              }}
+              onClick={() => {
+                setCurrNum("");
+                setShowKeyPad(false);
+              }}
+            >
+              {isHovered ? <IoCloseCircle /> : <IoCloseCircleOutline />}
+            </div>
+          </div>
+        )}
         <button
           className="cancel"
           onClick={() => {

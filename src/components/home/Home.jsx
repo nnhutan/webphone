@@ -1,30 +1,24 @@
 import "./home.scss";
 import { useState } from "react";
-import NumberItem from "../number-item/NumberItem";
 import { FiPhone } from "react-icons/fi";
 import { TiBackspaceOutline, TiBackspace } from "react-icons/ti";
 import useFormatPhoneNumber from "./../../hooks/useFormatPhoneNumber";
+import KeyPad from "../key-pad/KeyPad";
 
-const keyboard = [
-  { num: 1, text: "" },
-  { num: 2, text: "abc" },
-  { num: 3, text: "def" },
-  { num: 4, text: "ghi" },
-  { num: 5, text: "jkl" },
-  { num: 6, text: "mno" },
-  { num: 7, text: "pqrs" },
-  { num: 8, text: "tuv" },
-  { num: 9, text: "wxyz" },
-  { num: "*", text: "" },
-  { num: 0, text: "+" },
-  { num: "#", text: "" },
-];
-
-const Home = ({ phoneNumber, setPhoneNumber, ua, options }) => {
+const Home = ({
+  phoneNumber,
+  setPhoneNumber,
+  ua,
+  options,
+  setSpeakerOff,
+  setStatus,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const formatPhoneNumber = useFormatPhoneNumber();
 
   const handleCall = () => {
+    phoneNumber && setStatus("Calling");
+    setSpeakerOff(false);
     phoneNumber && ua.call(phoneNumber.replace(" ", ""), options);
   };
 
@@ -56,17 +50,7 @@ const Home = ({ phoneNumber, setPhoneNumber, ua, options }) => {
         )}
       </div>
 
-      <div className="number-keyboard">
-        {keyboard.map((item, index) => (
-          <div className="item" key={index}>
-            <NumberItem
-              num={item.num}
-              text={item.text}
-              setPhoneNumber={setPhoneNumber}
-            />
-          </div>
-        ))}
-      </div>
+      <KeyPad setPhoneNumber={setPhoneNumber} />
 
       <button className="call-btn" onClick={handleCall}>
         <FiPhone className="call-icon" />

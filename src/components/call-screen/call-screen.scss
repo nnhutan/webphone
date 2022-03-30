@@ -43,6 +43,37 @@
     }
   }
 
+  .keypad {
+    width: 180px;
+    position: relative;
+    .number-keyboard {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      .item {
+        margin-bottom: 10px;
+        .number-item {
+          width: 46px;
+          height: 46px;
+        }
+      }
+    }
+    .phone-number {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      min-height: 28px;
+    }
+
+    .close-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 24px;
+      cursor: pointer;
+      color: darkred;
+    }
+  }
+
   .call-bottom {
     .actions {
       display: flex;
@@ -54,8 +85,8 @@
         cursor: pointer;
         transition: all ease-in-out 0.3s;
         border-radius: 50%;
-        width: 28px;
-        height: 28px;
+        width: 36px;
+        height: 36px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -66,6 +97,10 @@
 
         .actions-icon {
           font-size: 24px;
+        }
+        &.active {
+          background-color: rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 4px 2px rgba($color: #000000, $alpha: 0.25);
         }
       }
     }

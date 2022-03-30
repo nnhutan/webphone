@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import Home from "./components/home/Home";
 import CallScreen from "./components/call-screen/CallScreen";
 import { useRef } from "react";
-
-// ua.start();
-
-// Register callbacks to desired call events
-
-// var session = ua.call("sip:bob@example.com", options);
+import { useStopwatch } from "react-timer-hook";
 
 function App() {
   const audioRef = useRef();
@@ -17,25 +12,27 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [ua, setUa] = useState(null);
   const [session, setSession] = useState(null);
+  const [speakerOff, setSpeakerOff] = useState(false);
+  const { seconds, minutes, isRunning, pause, reset } = useStopwatch({
+    autoStart: false,
+  });
+  const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  const minuteTime = minutes < 10 ? `0${minutes}` : `${minutes}`;
 
   var eventHandlers = {
-    progress: function (e) {
-      console.log("call is in progress", e);
-      setStatus("calling");
-    },
     failed: function (e) {
-      console.log(e);
-      console.log("call failed with cause: ", e);
       setStatus("start");
       setPhoneNumber("");
     },
+
     ended: function (e) {
-      console.log("call ended with cause: ", e);
+      pause();
       setStatus("start");
       setPhoneNumber("");
     },
+
     confirmed: function (e) {
-      console.log("call confirmed", e);
+      reset();
     },
   };
 
@@ -43,6 +40,7 @@ function App() {
     eventHandlers: eventHandlers,
     mediaConstraints: { audio: true, video: true },
   };
+
   useEffect(() => {
     try {
       var socket = new JsSIP.WebSocketInterface("wss://sbc03.tel4vn.com:7444");
@@ -62,6 +60,9 @@ function App() {
           console.log(event);
           audioRef.current.srcObject = event.stream;
         });
+        e.session.connection.addEventListener("removestream", (event) => {
+          console.log("removestream", event);
+        });
       });
 
       setUa(ua);
@@ -69,7 +70,7 @@ function App() {
       console.log(e);
     }
   }, []);
-  console.log(session);
+
   return (
     <div className="App">
       {status === "start" ? (
@@ -78,11 +79,22 @@ function App() {
           setPhoneNumber={setPhoneNumber}
           ua={ua}
           options={options}
+          setSpeakerOff={setSpeakerOff}
+          setStatus={setStatus}
         />
       ) : (
-        <CallScreen phoneNumber={phoneNumber} ua={ua} session={session} />
+        <CallScreen
+          phoneNumber={phoneNumber}
+          ua={ua}
+          session={session}
+          speakerOff={speakerOff}
+          setSpeakerOff={setSpeakerOff}
+          seconds={secondTime}
+          minutes={minuteTime}
+          isRunning={isRunning}
+        />
       )}
-      <audio ref={audioRef} autoPlay hidden={true} />
+      <audio ref={audioRef} autoPlay hidden={true} muted={speakerOff} />
     </div>
   );
 }
