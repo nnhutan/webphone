@@ -7,7 +7,7 @@ import JsSIP from "jssip";
 const useJssip = () => {
   const audioRef = useRef();
   const { setHistory } = useContext(HistoryContext);
-  const [phoneNumber, setPhoneNumber] = useState("0776217847");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [ua, setUa] = useState(null);
   const [session, setSession] = useState(null);
   const [speakerOff, setSpeakerOff] = useState(false);

@@ -8,7 +8,7 @@ import {
 } from "react-icons/io5";
 import { ImPhoneHangUp } from "react-icons/im";
 import useFormatPhoneNumber from "./../../hooks/useFormatPhoneNumber";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import KeyPad from "./../key-pad/KeyPad";
 
 const CallScreen = ({
@@ -25,7 +25,6 @@ const CallScreen = ({
   const [isHovered, setIsHovered] = useState(false);
   const [showKeyPad, setShowKeyPad] = useState(false);
   const [muted, setMuted] = useState(false);
-  const [] = useState(false);
 
   const formatPhoneNumber = useFormatPhoneNumber();
   return (
