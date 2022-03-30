@@ -5,6 +5,7 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 20px;
+  position: relative;
 
   .input-wrapper {
     display: flex;
@@ -15,8 +16,7 @@
       font-size: 32px;
       width: 100%;
       background-color: #fbfbff;
-      margin-bottom: 20px;
-      margin-top: 40px;
+      margin: 20px 0;
 
       &::placeholder {
         font-size: 24px;
@@ -25,8 +25,7 @@
 
     .delete-btn {
       cursor: pointer;
-      margin-top: 40px;
-      margin-bottom: 20px;
+      margin: 20px 0;
       display: flex;
       align-items: center;
 
@@ -59,6 +58,34 @@
     .call-icon {
       color: white;
       font-size: 26px;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #00008b;
+    }
+
+    .history-btn {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      color: #ffb40b;
+      border-radius: 50%;
+      transition: all ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e8e8fc;
+        box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.25);
+      }
     }
   }
 }

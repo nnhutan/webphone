@@ -27,9 +27,6 @@ const CallScreen = ({
   const [muted, setMuted] = useState(false);
   const [] = useState(false);
 
-  useEffect(() => {
-    console.log(ua);
-  }, []);
   const formatPhoneNumber = useFormatPhoneNumber();
   return (
     <div className="call-container">

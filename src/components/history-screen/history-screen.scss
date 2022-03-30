@@ -1,0 +1,132 @@
+.history-container {
+  width: 300px;
+  height: 542px;
+  background-color: #fbfbff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 30px 0 40px 20px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: solid 1px #fbfbff;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all ease 0.3s;
+
+      &:hover {
+        border-color: green;
+      }
+
+      .back-icon {
+        font-size: 18px;
+        color: green;
+      }
+    }
+
+    .title {
+      font-size: 24px;
+      color: #ffb40b;
+      margin-left: 12px;
+    }
+  }
+
+  .lists {
+    margin-left: 12px;
+    height: 100%;
+    overflow-y: scroll;
+    p {
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+    }
+    &::-webkit-scrollbar {
+      border-radius: 4px;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 4px;
+    }
+    .history-item {
+      display: flex;
+      margin-bottom: 8px;
+
+      .time {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-left: 20px;
+
+        &::before {
+          top: 16px;
+          left: -10px;
+          border-radius: 3px;
+          position: absolute;
+          content: "";
+          width: 3px;
+          background-color: #5454f3;
+          height: calc(100% - 16px);
+        }
+
+        &::after {
+          content: "";
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          border: solid 1px #5454f3;
+          position: absolute;
+          top: 8px;
+          left: -11px;
+        }
+
+        .phone-number {
+          font-weight: 600;
+          font-size: 18px;
+          color: #00008b;
+        }
+
+        .status {
+          font-size: 16px;
+          color: #999;
+          &.success {
+            em {
+              color: green;
+              font-weight: 700;
+            }
+          }
+          &.fail {
+            em {
+              color: red;
+              font-weight: 700;
+            }
+          }
+        }
+
+        .duration {
+          color: #999;
+          font-size: 16px;
+          em {
+            color: #555;
+          }
+        }
+      }
+    }
+  }
+}

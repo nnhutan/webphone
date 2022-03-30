@@ -1,29 +1,28 @@
 import "./home.scss";
 import { useState } from "react";
 import { FiPhone } from "react-icons/fi";
+import { VscHistory } from "react-icons/vsc";
 import { TiBackspaceOutline, TiBackspace } from "react-icons/ti";
 import useFormatPhoneNumber from "./../../hooks/useFormatPhoneNumber";
 import KeyPad from "../key-pad/KeyPad";
 
-const Home = ({
-  phoneNumber,
-  setPhoneNumber,
-  ua,
-  options,
-  setSpeakerOff,
-  setStatus,
-}) => {
+const Home = ({ phoneNumber, setPhoneNumber, handleCall, setSeeLogs }) => {
   const [isHovered, setIsHovered] = useState(false);
   const formatPhoneNumber = useFormatPhoneNumber();
 
-  const handleCall = () => {
-    phoneNumber && setStatus("Calling");
-    setSpeakerOff(false);
-    phoneNumber && ua.call(phoneNumber.replace(" ", ""), options);
-  };
-
   return (
     <div className="mobile-container">
+      <div className="header">
+        <div className="logo">WebPhone</div>
+        <div
+          className="history-btn"
+          onClick={() => {
+            setSeeLogs(true);
+          }}
+        >
+          <VscHistory />
+        </div>
+      </div>
       <div className="input-wrapper">
         <input
           type="text"
