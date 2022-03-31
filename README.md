@@ -30,4 +30,9 @@ thanh, microphone và video.
 
 <img src="./screen_home.png" alt="drawing" width="210"
 height="364"/>|<img src="./screen_call.png" alt="drawing" width="210"
-height="364"/>|<img src="./screen_logs.png" alt="drawing" width="210" height="364"/>
+height="364"/>|<img src="./screen_logs.png" alt="drawing" width="210"
+height="364"/>
+
+## Demo ứng dụng
+
+Truy cập và sử dụng ứng dụng [WebPhone](https://web-phone.netlify.app/)
