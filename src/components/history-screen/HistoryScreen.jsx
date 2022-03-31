@@ -24,16 +24,18 @@ const HistoryScreen = ({ setSeeLogs }) => {
         {history.length === 0 ? (
           <p>No recent calls</p>
         ) : (
-          history.map((item, index) => (
-            <HistoryItem
-              date={item.startTime}
-              phone={item.phoneNumber}
-              start={item.start}
-              end={item.end}
-              status={item.status}
-              key={index}
-            />
-          ))
+          [...history]
+            .reverse()
+            .map((item, index) => (
+              <HistoryItem
+                date={item.startTime}
+                phone={item.phoneNumber}
+                start={item.start}
+                end={item.end}
+                status={item.status}
+                key={index}
+              />
+            ))
         )}
       </div>
     </div>

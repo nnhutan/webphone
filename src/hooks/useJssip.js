@@ -17,17 +17,6 @@ const useJssip = () => {
   });
 
   var eventHandlers = {
-    progress: function (e) {
-      setHistory((prev) => [
-        ...prev,
-        {
-          startTime: new Date(),
-          phoneNumber,
-        },
-      ]);
-      setStatus("calling");
-    },
-
     failed: function (e) {
       setStatus("fail");
       setPhoneNumber("");
@@ -93,7 +82,15 @@ const useJssip = () => {
   const handleCall = () => {
     setSpeakerOff(false);
     if (phoneNumber) {
+      setHistory((prev) => [
+        ...prev,
+        {
+          startTime: new Date(),
+          phoneNumber,
+        },
+      ]);
       ua.call(phoneNumber.replace(" ", ""), options);
+      setStatus("calling");
     }
   };
 
@@ -104,7 +101,6 @@ const useJssip = () => {
     phoneNumber,
     setPhoneNumber,
     handleCall,
-    ua,
     session,
     speakerOff,
     setSpeakerOff,

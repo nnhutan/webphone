@@ -13,7 +13,6 @@ function App() {
     phoneNumber,
     setPhoneNumber,
     handleCall,
-    ua,
     session,
     speakerOff,
     setSpeakerOff,
@@ -39,7 +38,6 @@ function App() {
       ) : (
         <CallScreen
           phoneNumber={phoneNumber}
-          ua={ua}
           session={session}
           speakerOff={speakerOff}
           setSpeakerOff={setSpeakerOff}

@@ -13,7 +13,6 @@ import KeyPad from "./../key-pad/KeyPad";
 
 const CallScreen = ({
   phoneNumber,
-  ua,
   session,
   speakerOff,
   setSpeakerOff,
@@ -91,7 +90,7 @@ const CallScreen = ({
         <button
           className="cancel"
           onClick={() => {
-            ua.terminateSessions();
+            session.terminate();
           }}
         >
           <ImPhoneHangUp className="cancle-icon" />
