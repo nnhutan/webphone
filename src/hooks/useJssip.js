@@ -52,7 +52,7 @@ const useJssip = () => {
 
   var options = {
     eventHandlers: eventHandlers,
-    mediaConstraints: { audio: true, video: true },
+    mediaConstraints: { audio: true },
   };
 
   useEffect(() => {
