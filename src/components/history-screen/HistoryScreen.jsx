@@ -3,22 +3,34 @@ import HistoryContext from "../../context/HistoryContext";
 import { useContext } from "react";
 import HistoryItem from "./HistoryItem";
 import { IoMdArrowBack } from "react-icons/io";
+import { BsTrash } from "react-icons/bs";
 
 const HistoryScreen = ({ setSeeLogs }) => {
-  const { history } = useContext(HistoryContext);
+  const { history, setHistory } = useContext(HistoryContext);
 
   return (
     <div className="history-container">
       <div className="header">
+        <div className="wrapper">
+          <div
+            className="icon"
+            onClick={() => {
+              setSeeLogs(false);
+            }}
+          >
+            <IoMdArrowBack className="back-icon" />
+          </div>
+          <h3 className="title">Call logs</h3>
+        </div>
+
         <div
-          className="icon"
+          className="delete-icon"
           onClick={() => {
-            setSeeLogs(false);
+            setHistory([]);
           }}
         >
-          <IoMdArrowBack className="back-icon" />
+          <BsTrash />
         </div>
-        <h3 className="title">Call logs</h3>
       </div>
       <div className="lists">
         {history.length === 0 ? (
@@ -34,6 +46,7 @@ const HistoryScreen = ({ setSeeLogs }) => {
                 end={item.end}
                 status={item.status}
                 key={index}
+                index={index}
               />
             ))
         )}
